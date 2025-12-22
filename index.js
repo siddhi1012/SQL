@@ -7,11 +7,12 @@ const connection = mysql.createConnection({
     password : 'Siddhi@1012'
 
 }) ;
-
+let q = "Show tables";
 try{
-    connection.query("SHOW TABLES",(err,result) =>{
+    connection.query(q,(err,result) =>{
     if(err) throw err;
-    console.log(result);      
+    console.log(result[0]);   
+     console.log(result[1]);      
 });
 connection.end();
 
