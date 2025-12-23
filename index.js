@@ -26,6 +26,7 @@ let createRandomUser = () => {
 };
 
 // fetch and show total number of users on our app
+// Home Route
 app.get("/" , (req,res) =>{
   let q = "select count(*) from emp";
   try{
@@ -38,6 +39,27 @@ app.get("/" , (req,res) =>{
     console.log(err);
     res.send("Some Error in database");
 }
+});
+
+// Show Route
+app.get("/user",(req,res) =>{
+  let q = "select * from emp";
+  try{
+    connection.query(q,(err,result) =>{
+      if(err) throw err;
+      // console.log(result);
+
+      // res.send(result);
+      let data = result ; 
+      res.render("users.ejs" , {data});
+    });
+  }catch(err){
+    res.send("some error occured");
+  }
+});
+
+app.get("/user/:id/edit", (req,res) =>{
+  
 });
 
 app.listen("8080" , () =>{
